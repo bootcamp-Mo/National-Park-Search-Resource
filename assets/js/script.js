@@ -1,5 +1,5 @@
 //Array of state objects to populate a select element on load of the page
-export const states = [{ stateName: "Alabama", stateCode: "AL" }, { stateName: "Alaska", stateCode: "AK" }, { stateName: "Arizona", stateCode: "AZ" },
+const states = [{ stateName: "Alabama", stateCode: "AL" }, { stateName: "Alaska", stateCode: "AK" }, { stateName: "Arizona", stateCode: "AZ" },
 { stateName: "Arkansas", stateCode: "AR" }, { stateName: "California", stateCode: "CA" }, { stateName: "Colorado", stateCode: "CO" }, { stateName: "Delaware", stateCode: "DE" },
 { stateName: "Florida", stateCode: "FL" }, { stateName: "Georgia", stateCode: "GA" }, { stateName: "Hawaii", stateCode: "HI" }, { stateName: "Idaho", stateCode: "ID" },
 { stateName: "Illinois", stateCode: "IL" }, { stateName: "Indiana", stateCode: "IN" }, { stateName: "Iowa", stateCode: "IA" }, { stateName: "Kansas", stateCode: "KS" },
