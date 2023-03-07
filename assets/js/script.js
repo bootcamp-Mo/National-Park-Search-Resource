@@ -13,3 +13,23 @@ const states = [{stateName: "Alabama", stateCode: "AL"}, {stateName: "Alaska", s
 {stateName: "South Dakota", stateCode: "SD"}, {stateName: "Tennessee", stateCode: "TN"}, {stateName: "Texas", stateCode: "TX"}, 
 {stateName: "Utah", stateCode: "UT"}, {stateName: "Vermont", stateCode: "VT"}, {stateName: "Virginia", stateCode: "VA"}, {stateName: "Washington", stateCode: "WA"}, 
 {stateName: "West Virginia", stateCode: "WV"}, {stateName: "Wisconsin", stateCode: "WI"}, {stateName: "Wyoming", stateCode: "WY"}]
+
+//Jquery for to select the selector element
+const stateSelector = $("#stateSelector");
+
+//function that creates the option elements for the state elements
+function populateSelector() {
+    let optionEl = document.createElement("option");
+    optionEl.innerHTML = "Select State";
+    optionEl.setAttribute('data-value', '00');
+    stateSelector.append(optionEl);
+    for (let i = 0; i < states.length; i++){
+        let optionEl = document.createElement("option");
+        optionEl.innerHTML = states[i].stateName;
+        optionEl.setAttribute('data-value', states[i].stateCode);
+        stateSelector.append(optionEl);
+    }
+}
+
+//Calls the populate selector function on window load
+window.addEventListener('load', populateSelector);
