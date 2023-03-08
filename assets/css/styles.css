@@ -1,6 +1,9 @@
 body {
     justify-content: center;
     align-items: center;
+    background-image: url('../image/yosemite-valley-sunset.jpg');
+    background-repeat: no-repeat;
+    background-size: 100%;
 }
 
 .top-body {
@@ -10,14 +13,37 @@ body {
 }
 
 .search-container {
-    
+   
 }
 
+select {
+    display: block;
+    margin: 0 auto;
+    }
 
+h2 {
+    text-align: center;
+}
+
+#search-button {
+    display: block;
+    margin: 0 auto;
+}
 .stateselector {
+    align-tems: center;
     width: 200px;
 }
 
 .search-button {
     justify-content: center;
+}
+
+
+.footer {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    justify-content: center;
+    width: 100%;
+    background-color: tan;
 }
