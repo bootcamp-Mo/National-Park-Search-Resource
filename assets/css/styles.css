@@ -1,0 +1,23 @@
+body {
+    justify-content: center;
+    align-items: center;
+}
+
+.top-body {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-container {
+    
+}
+
+
+.stateselector {
+    width: 200px;
+}
+
+.search-button {
+    justify-content: center;
+}
