@@ -13,18 +13,3 @@ const states = [{stateName: "Alabama", stateCode: "AL"}, {stateName: "Alaska", s
 {stateName: "South Dakota", stateCode: "SD"}, {stateName: "Tennessee", stateCode: "TN"}, {stateName: "Texas", stateCode: "TX"}, 
 {stateName: "Utah", stateCode: "UT"}, {stateName: "Vermont", stateCode: "VT"}, {stateName: "Virginia", stateCode: "VA"}, {stateName: "Washington", stateCode: "WA"}, 
 {stateName: "West Virginia", stateCode: "WV"}, {stateName: "Wisconsin", stateCode: "WI"}, {stateName: "Wyoming", stateCode: "WY"}]
-
-const searchbutton = document.querySelector('.search-button');
-const URLredirect = './ other html doc';
-
-searchbutton.addEventListener('click', (event) => {
-	event.preventDefault();
-
-	const stateselected = document.querySelector('.state-selected').value;
-	console.log(stateselected);
-
-	storage.setIem('stateselected', JSON.strigify(stateselected));
-
-	Window.location.href = URLredirect;
-
-});
