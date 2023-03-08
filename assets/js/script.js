@@ -16,31 +16,30 @@ const states = [{ stateName: "Alabama", stateCode: "AL" }, { stateName: "Alaska"
 
 //Jquery for to select the selector element
 const stateSelector = $("#stateSelector");
-const searchbutton = document.querySelector('.search-button');
-const URLredirect = './ other html doc';
+const searchButton = $("#search-button");
+const URLredirect = 'results.html';
 
-searchbutton.addEventListener('click', (event) => {
+searchButton.on('click', (event) => {
 	event.preventDefault();
 
-	const stateselected = document.querySelector('.state-selected').value;
-	console.log(stateselected);
-
-	localStorage.setItem('stateselected', JSON.stringify(stateselected));
-
-	Window.location.href = URLredirect;
-
+	let stateSelected = document.querySelector('#stateSelector').value;
+	console.log(stateSelected);
+    if(stateSelected !== "00"){
+        localStorage.setItem('stateSelected', JSON.stringify(stateSelected));
+        window.location.href = URLredirect;
+    }
 });
 
 //function that creates the option elements for the state elements
 function populateSelector() {
     let optionEl = document.createElement("option");
     optionEl.innerHTML = "Select State";
-    optionEl.setAttribute('data-value', '00');
+    optionEl.setAttribute('value', '00');
     stateSelector.append(optionEl);
     for (let i = 0; i < states.length; i++) {
         let optionEl = document.createElement("option");
         optionEl.innerHTML = states[i].stateName;
-        optionEl.setAttribute('data-value', states[i].stateCode);
+        optionEl.setAttribute('value', states[i].stateCode);
         stateSelector.append(optionEl);
     }
 }
