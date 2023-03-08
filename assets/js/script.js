@@ -23,7 +23,7 @@ searchbutton.addEventListener('click', (event) => {
 	const stateselected = document.querySelector('.state-selected').value;
 	console.log(stateselected);
 
-	storage.setIem('stateselected', JSON.strigify(stateselected));
+	localStorage.setItem('stateselected', JSON.stringify(stateselected));
 
 	Window.location.href = URLredirect;
 
