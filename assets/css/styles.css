@@ -2,6 +2,15 @@
     font-family: 'Lora', serif;
 }
 
+h1,
+h2 {
+    font-family: 'Lora', serif;
+    font-weight: 500;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
 body {
     justify-content: center;
     align-items: center;
