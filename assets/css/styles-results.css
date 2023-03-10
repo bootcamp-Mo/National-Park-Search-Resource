@@ -16,6 +16,15 @@ p {
 }
 
 li {
+    border: solid gray 1px;
+    box-shadow: 4px 3px 3px rgb(114, 116, 117);
+    display: inline-block;
+    width: 20%;
     /* For Debugging Purposes */
     /* border: solid green; */
+}
+
+li.p{
+    /* For Debugging Purposes */
+    color: pink;
 }
