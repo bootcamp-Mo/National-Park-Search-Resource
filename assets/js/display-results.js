@@ -3,12 +3,13 @@
 const apiPKey = 'aB5JMBnZeg0gsdgC7dlA4ZY5ahcjC314ZaSmQfQl'
 const apiWKey = '6a977b35e5b5da178fcf8653e1b65045'
 const apiParks = 'https://developer.nps.gov/api/v1/parks'
-const apiForecast = 'https://api.openweathermap.org/data/2.5/forecast/daily'
+const apiForecast = 'https://api.openweathermap.org/data/2.5/forecast'
 
 /**========================================================================
  *                           Park Data API fetch
  *========================================================================**/
 const parkResultContainer = document.querySelector('#parkResults')
+var postalCode;
 
 function resultsParks(states) {
     fetch(`${apiParks}?parkCode=${states}&api_key=${apiPKey}`)
@@ -16,13 +17,13 @@ function resultsParks(states) {
             return response.json();
         })
         .then(function (data) {
-            const parsedData = JSON.parse(JSON.stringify(data));
-            const parkResultBox = document.createElement('div');
+            let parsedData = JSON.parse(JSON.stringify(data));
+            let parkResultBox = document.createElement('div');
             parkResultBox.classList.add('parkResultsData');
 
-            const activity = parsedData.data[0].activities;
-            const parkName = parsedData.data[0].fullName;
-            const address =
+            let activity = parsedData.data[0].activities;
+            let parkName = parsedData.data[0].fullName;
+            let address =
                 parsedData.data[0].addresses[0].line1 +
                 ', ' +
                 parsedData.data[0].addresses[0].city +
@@ -30,14 +31,16 @@ function resultsParks(states) {
                 parsedData.data[0].addresses[0].stateCode +
                 ' ' +
                 parsedData.data[0].addresses[0].postalCode;
+            let postalCode = parsedData.data[0].addresses[0].postalCode;
 
-            const contacts = parsedData.data[0].contacts;
-            const description = parsedData.data[0].description;
-            const designation = parsedData.data[0].designation;
-            const directionsInfo = parsedData.data[0].directionsInfo;
-            const directionsUrl = parsedData.data[0].directionsUrl;
+            localStorage.setItem(address, postalCode);
+            let contacts = parsedData.data[0].contacts;
+            let description = parsedData.data[0].description;
+            let designation = parsedData.data[0].designation;
+            let directionsInfo = parsedData.data[0].directionsInfo;
+            let directionsUrl = parsedData.data[0].directionsUrl;
 
-            const entranceFees = document.createElement('div');
+            let entranceFees = document.createElement('div');
             entranceFees.innerHTML = `
                 <p>Entrance Fees:</p>
                 <ul>
@@ -51,6 +54,7 @@ function resultsParks(states) {
             `;
 
             parkResultBox.innerHTML = `
+            <div class="parkResultsItemBox">
                 <p>${parkName}</p>
                 <p>${address}</p>
                 <p>Email: ${contacts.emailAddresses.length > 0
@@ -65,6 +69,7 @@ function resultsParks(states) {
                 <p>Designation: ${designation}</p>
                 <p>${directionsInfo}</p>
                 <p>${directionsUrl}</p>
+                </div>
             `;
             parkResultBox.appendChild(entranceFees);
 
@@ -87,44 +92,52 @@ function resultsParks(states) {
  **      five day forecast
 //  *
 //  *========================**/
-// const parkForecastBox = document.querySelector('#parkForecastBox');
+const parkForecastBox = document.querySelector('#parkForecastBox');
+const zipCode = localStorage.getItem(postalCode)
 
-// function parkForecast(states) {
-//     fetch(`${apiForecast}?q=${states}&appid=${apiWKey}&units=imperial`)
-//         .then(function (response) {
-//             return response.json();
-//         })
-//         .then(function (data) {
-//             const parsedData = JSON.parse(JSON.stringify(data));
+function parkForecast(zipCode) {
 
-//             const forecastList = document.createElement('ul');
-//             const currentDate = new Date();
-//             currentDate.setDate(currentDate.getDate() + 1);
-//             parsedData.list.slice(1).forEach(function (forecast, index) {
-//                 const forecastItem = document.createElement('li');
-//                 const temperature = forecast.main.temp;
-//                 const wind = forecast.wind.speed;
-//                 const humidity = forecast.main.humidity;
-//                 const date = new Date(currentDate.getTime() + index * 24 * 60 * 60 * 1000).toLocaleDateString();
+    fetch(`${apiForecast}?q=${zipCode}&units=imperial&appid=${apiWKey}&amp&cnt=5`)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            let parsedData = JSON.parse(JSON.stringify(data));
+            if (!parsedData.list) {
+                throw new Error('Invalid data format');
+            }
 
-//                 forecastItem.innerHTML = `
-//            <p>Date: ${date}</p>
-//            <p>Temperature: ${temperature}F</p>
-//            <p>Wind speed: ${wind} m/s</p>
-//            <p>Humidity: ${humidity}%</p>
-//          `;
 
-//                 forecastList.appendChild(forecastItem);
-//             });
+            let forecastList = document.createElement('ul');
+            let currentDate = new Date();
+            currentDate.setDate(currentDate.getDate() + 1);
+            parsedData.list.slice(1).forEach(function (forecast, index) {
+                let forecastItem = document.createElement('li');
+                let temperature = forecast.main.temp;
+                let wind = forecast.wind.speed;
+                let humidity = forecast.main.humidity;
+                let date = new Date(currentDate.getTime() + index * 24 * 60 * 60 * 1000).toLocaleDateString();
 
-//             parkForecastBox.innerHTML = '';
-//             parkForecastBox.appendChild(forecastList);
-//         })
-//         .catch(error => {
-//             console.error(`Error: ${error}`);
-//         });
-// }
+                forecastItem.innerHTML = `
+                <div class="parkForecastItemBox">
+           <p>Date: ${date}</p>
+           <p>Temperature: ${temperature}F</p>
+           <p>Wind speed: ${wind} m/s</p>
+           <p>Humidity: ${humidity}%</p>
+           </div>
+         `;
+                forecastList.appendChild(forecastItem);
+            });
+            parkForecastBox.innerHTML = '';
+            parkForecastBox.appendChild(forecastList);
+        })
+        .catch(error => {
+            console.error(`Error: ${error}`);
+        });
+}
 
 window.onload = function () {
     resultsParks('CA')
+    parkForecast('Portland')
+
 }
