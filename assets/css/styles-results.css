@@ -1,0 +1,21 @@
+#parkResults {
+   
+}
+
+body {
+    background: lightgray;
+}
+
+p {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    /* For Debugging Purposes */
+    /* border: solid red; */
+
+}
+
+li {
+    /* For Debugging Purposes */
+    /* border: solid green; */
+}
