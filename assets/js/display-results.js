@@ -1,4 +1,6 @@
-const apiPKey = 'aB5JMBnZeg0gsdgC7dlA4ZY5ahcjC314ZaSmQfQl'
+/**const apiPKey = 'aB5JMBnZeg0gsdgC7dlA4ZY5ahcjC314ZaSmQfQl'**/
+
+const apiPKey = 'keUgXA4zA0DCR17ihQfTmtASQqGBGyMJ8Q85tkNc'
 const apiWKey = '6a977b35e5b5da178fcf8653e1b65045'
 const apiParks = 'https://developer.nps.gov/api/v1/parks'
 const apiForecast = 'https://api.openweathermap.org/data/2.5/forecast'
@@ -6,11 +8,13 @@ const apiForecast = 'https://api.openweathermap.org/data/2.5/forecast'
 /**========================================================================
  *                           Park Data API fetch
  *========================================================================**/
-const parkResultContainer = document.querySelector('#parkResults');
-const parkForecastBox = document.querySelector('#parkForecastBox');
 
-function resultsParks(states) {
-    fetch(`${apiParks}?parkCode=${states}&api_key=${apiPKey}`)
+const parkResultContainer = document.querySelector('#parkResults')
+const parkForecastBox = document.querySelector('#parkForecastBox');
+const stateCode = '';
+
+function resultsParks(stateCode) {
+    fetch(`${apiParks}?stateCode=${stateCode}&api_key=${apiPKey}`)
         .then(function (response) {
             return response.json();
         })
