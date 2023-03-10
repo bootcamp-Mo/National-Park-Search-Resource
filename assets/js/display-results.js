@@ -9,8 +9,8 @@ const apiForecast = 'https://api.openweathermap.org/data/2.5/forecast'
  *                           Park Data API fetch
  *========================================================================**/
 
-const parkResultContainer = document.querySelector('#parkResults')
-const parkForecastBox = document.querySelector('#parkForecastBox');
+const parkResultContainer = document.querySelector('#apiResults');
+//const parkForecastBox = document.querySelector('#parkForecastBox');
 const stateCode = '';
 
 function resultsParks(stateCode) {
@@ -20,29 +20,32 @@ function resultsParks(stateCode) {
         })
         .then(function (data) {
             let parsedData = JSON.parse(JSON.stringify(data));
-            let parkResultBox = document.createElement('div');
-            parkResultBox.classList.add('parkResultsData');
+            for(let i = 0; i < 5; i++){
+                let resultBox = document.createElement('div');
+                resultBox.classList.add('parkResults');
+                let parkResultBox = document.createElement('div');
+                parkResultBox.classList.add('callout', 'warning');
 
-            let activity = parsedData.data[0].activities;
-            let parkName = parsedData.data[0].fullName;
-            let address =
-                parsedData.data[0].addresses[0].line1 +
+                let activity = parsedData.data[i].activities;
+                let parkName = parsedData.data[i].fullName;
+                let address =
+                parsedData.data[i].addresses[0].line1 +
                 ', ' +
-                parsedData.data[0].addresses[0].city +
+                parsedData.data[i].addresses[0].city +
                 ', ' +
-                parsedData.data[0].addresses[0].stateCode +
+                parsedData.data[i].addresses[0].stateCode +
                 ' ' +
-                parsedData.data[0].addresses[0].postalCode;
+                parsedData.data[i].addresses[0].postalCode;
 
-            let postalCode = parsedData.data[0].addresses[0].postalCode;
-            let contacts = parsedData.data[0].contacts;
-            let description = parsedData.data[0].description;
-            let designation = parsedData.data[0].designation;
-            let directionsInfo = parsedData.data[0].directionsInfo;
-            let directionsUrl = parsedData.data[0].directionsUrl;
+                let postalCode = parsedData.data[i].addresses[0].postalCode;
+                let contacts = parsedData.data[i].contacts;
+                let description = parsedData.data[i].description;
+                let designation = parsedData.data[i].designation;
+                let directionsInfo = parsedData.data[i].directionsInfo;
+                let directionsUrl = parsedData.data[i].directionsUrl;
 
-            let entranceFees = document.createElement('div');
-            entranceFees.innerHTML = `
+                let entranceFees = document.createElement('div');
+                entranceFees.innerHTML = `
                 <p>Entrance Fees:</p>
                 <ul>
                     ${parsedData.data[0].entranceFees
@@ -52,10 +55,10 @@ function resultsParks(stateCode) {
                     )
                     .join('')}
                 </ul>
-            `;
+                `;
 
-            parkResultBox.innerHTML = `
-            <div class="parkResultsItemBox">
+                parkResultBox.innerHTML = `
+                <div class="parkResultsItemBox">
                 <h2>${parkName}</h2>
                 <p>${address}</p>
                 <p>Email: ${contacts.emailAddresses.length > 0
@@ -71,23 +74,19 @@ function resultsParks(stateCode) {
                 <p>${directionsInfo}</p>
                 <p>${directionsUrl}</p>
                 </div>
-            `;
-            parkResultBox.appendChild(entranceFees);
+                `;
+                parkResultBox.appendChild(entranceFees);
 
-            parkResultContainer.innerHTML = '';
-            parkResultContainer.appendChild(parkResultBox);
+                resultBox.appendChild(parkResultBox);
 
-            console.log(activity);
-            console.log(parkName);
-            console.log(address);
-            console.log(contacts);
-            console.log(description);
-            console.log(designation);
-            console.log(directionsInfo);
-            console.log(directionsUrl);
-            console.log(entranceFees);
+                parkForecast(postalCode, resultBox);
 
-            parkForecast(postalCode);
+
+            }
+            
+
+            
+            
         });
 }
 
@@ -97,7 +96,7 @@ function resultsParks(stateCode) {
 //  *========================**/
 
 
-function parkForecast(zipCode) {
+function parkForecast(zipCode, resultBox) {
 
     fetch(`${apiForecast}?q=${zipCode}&units=imperial&appid=${apiWKey}&amp&cnt=5`)
         .then(function (response) {
@@ -109,7 +108,8 @@ function parkForecast(zipCode) {
                 throw new Error('Invalid data format');
             }
 
-
+            let parkForecastBox = document.createElement('div');
+            parkForecastBox.classList.add("callout", "priamry");
             let forecastList = document.createElement('ul');
             let currentDate = new Date();
             //currentDate.setDate(currentDate.getDate() + 1);
@@ -130,8 +130,10 @@ function parkForecast(zipCode) {
          `;
                 forecastList.appendChild(forecastItem);
             });
-            parkForecastBox.innerHTML = '';
+            //parkForecastBox.innerHTML = '';
             parkForecastBox.appendChild(forecastList);
+            resultBox.appendChild(parkForecastBox);
+            parkResultContainer.appendChild(resultBox);
         })
         .catch(error => {
             console.error(`Error: ${error}`);
