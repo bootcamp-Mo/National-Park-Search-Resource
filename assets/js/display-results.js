@@ -1,5 +1,3 @@
-
-
 const apiPKey = 'aB5JMBnZeg0gsdgC7dlA4ZY5ahcjC314ZaSmQfQl'
 const apiWKey = '6a977b35e5b5da178fcf8653e1b65045'
 const apiParks = 'https://developer.nps.gov/api/v1/parks'
@@ -8,8 +6,8 @@ const apiForecast = 'https://api.openweathermap.org/data/2.5/forecast'
 /**========================================================================
  *                           Park Data API fetch
  *========================================================================**/
-const parkResultContainer = document.querySelector('#parkResults')
-var postalCode;
+const parkResultContainer = document.querySelector('#parkResults');
+const parkForecastBox = document.querySelector('#parkForecastBox');
 
 function resultsParks(states) {
     fetch(`${apiParks}?parkCode=${states}&api_key=${apiPKey}`)
@@ -31,9 +29,8 @@ function resultsParks(states) {
                 parsedData.data[0].addresses[0].stateCode +
                 ' ' +
                 parsedData.data[0].addresses[0].postalCode;
-            let postalCode = parsedData.data[0].addresses[0].postalCode;
 
-            localStorage.setItem(address, postalCode);
+            let postalCode = parsedData.data[0].addresses[0].postalCode;
             let contacts = parsedData.data[0].contacts;
             let description = parsedData.data[0].description;
             let designation = parsedData.data[0].designation;
@@ -85,6 +82,8 @@ function resultsParks(states) {
             console.log(directionsInfo);
             console.log(directionsUrl);
             console.log(entranceFees);
+
+            parkForecast(postalCode);
         });
 }
 
@@ -92,8 +91,7 @@ function resultsParks(states) {
  **      five day forecast
 //  *
 //  *========================**/
-const parkForecastBox = document.querySelector('#parkForecastBox');
-const zipCode = localStorage.getItem(postalCode)
+
 
 function parkForecast(zipCode) {
 
@@ -110,8 +108,8 @@ function parkForecast(zipCode) {
 
             let forecastList = document.createElement('ul');
             let currentDate = new Date();
-            currentDate.setDate(currentDate.getDate() + 1);
-            parsedData.list.slice(1).forEach(function (forecast, index) {
+            //currentDate.setDate(currentDate.getDate() + 1);
+            parsedData.list.slice().forEach(function (forecast, index) {
                 let forecastItem = document.createElement('li');
                 let temperature = forecast.main.temp;
                 let wind = forecast.wind.speed;
@@ -137,7 +135,6 @@ function parkForecast(zipCode) {
 }
 
 window.onload = function () {
-    resultsParks('CA')
-    parkForecast('Portland')
+    resultsParks('CA');
 
 }
