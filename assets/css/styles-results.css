@@ -2,24 +2,35 @@
    
 }
 
+h1 {
+    background-image: url('../image/yosemite-valley-sunset.jpg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
 body {
+    /* add flex to page */
+    /* display: flex; */
     background: lightgray;
 }
 
 p {
+    display: block;
+    /*
     text-align: center;
     justify-content: center;
     align-items: center;
+    */
     /* For Debugging Purposes */
     /* border: solid red; */
-
 }
 
 li {
-    border: solid gray 1px;
-    box-shadow: 4px 3px 3px rgb(114, 116, 117);
+    border: solid rgb(96, 95, 95) 1px;
+    box-shadow: 4px 5px 4px rgb(114, 116, 117);
     display: inline-block;
     width: 20%;
+    padding: 10px;
     /* For Debugging Purposes */
     /* border: solid green; */
 }
