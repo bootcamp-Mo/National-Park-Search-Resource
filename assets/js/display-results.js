@@ -1,6 +1,9 @@
 
 
-const apiPKey = 'aB5JMBnZeg0gsdgC7dlA4ZY5ahcjC314ZaSmQfQl'
+/**const apiPKey = 'aB5JMBnZeg0gsdgC7dlA4ZY5ahcjC314ZaSmQfQl'**/
+
+const apiPKey = 'keUgXA4zA0DCR17ihQfTmtASQqGBGyMJ8Q85tkNc'
+
 const apiWKey = '6a977b35e5b5da178fcf8653e1b65045'
 const apiParks = 'https://developer.nps.gov/api/v1/parks'
 const apiForecast = 'https://api.openweathermap.org/data/2.5/forecast'
@@ -10,9 +13,14 @@ const apiForecast = 'https://api.openweathermap.org/data/2.5/forecast'
  *========================================================================**/
 const parkResultContainer = document.querySelector('#parkResults')
 var postalCode;
+const stateCode = '';
 
-function resultsParks(states) {
-    fetch(`${apiParks}?parkCode=${states}&api_key=${apiPKey}`)
+for (let i = 0; i < stateCode.length; i++) {
+  resultsParks(stateCode[i]);
+}
+
+function resultsParks(stateCode) {
+    fetch(`${apiParks}?stateCode=${stateCode}&api_key=${apiPKey}`)
         .then(function (response) {
             return response.json();
         })
