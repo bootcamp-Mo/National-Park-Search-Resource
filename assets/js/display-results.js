@@ -9,6 +9,7 @@ const apiForecast = 'https://api.openweathermap.org/data/2.5/forecast'
  *                           Park Data API fetch
  *========================================================================**/
 const parkResultContainer = document.querySelector('#parkResults')
+var postalCode;
 
 function resultsParks(states) {
     fetch(`${apiParks}?parkCode=${states}&api_key=${apiPKey}`)
@@ -96,7 +97,7 @@ const zipCode = localStorage.getItem(postalCode)
 
 function parkForecast(zipCode) {
 
-    fetch(`${apiForecast}?q=${zipCode}&units=imperial&appid=${apiWKey}`)
+    fetch(`${apiForecast}?q=${zipCode}&units=imperial&appid=${apiWKey}&amp&cnt=5`)
         .then(function (response) {
             return response.json();
         })
