@@ -36,5 +36,6 @@ li {
 }
 
 li.p{
+    /* For Debugging Purposes */
     color: pink;
 }
