@@ -56,7 +56,7 @@ function resultsParks(stateCode) {
 
             parkResultBox.innerHTML = `
             <div class="parkResultsItemBox">
-                <p>${parkName}</p>
+                <h2>${parkName}</h2>
                 <p>${address}</p>
                 <p>Email: ${contacts.emailAddresses.length > 0
                     ? contacts.emailAddresses[0].emailAddress
