@@ -1,13 +1,12 @@
-styles.css
-
-
 
 * {
     font-family: 'Lora', serif;
 }
 
 h1,
-h2 {
+h2,
+h3,
+h4 {
     font-family: 'Lora', serif;
     font-weight: 500;
     text-align: center;
@@ -16,14 +15,18 @@ h2 {
 }
 
 body {
-    justify-content: center;
-    align-items: center;
     background-image: url('../image/yosemite-valley-sunset.jpg');
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: 100% 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .top-body {
+    display: flex;
+    display: block;
     text-align: center;
     justify-content: center;
     align-items: center;
@@ -71,3 +74,26 @@ h2 {
     width: 100%;
     background-color: tan;
 }
+
+
+/* Media queries for different screen sizes */
+/*
+@media only screen and (max-width: 768px) {
+    body {
+      background-size: cover;
+    }
+  }
+  
+  @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    body {
+      background-size: cover;
+    }
+  }
+  
+  @media only screen and (min-width: 1024px) {
+    body {
+      background-size: 100% 100vh;
+    }
+  }
+
+  */

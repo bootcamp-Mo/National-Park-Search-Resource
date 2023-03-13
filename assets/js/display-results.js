@@ -45,7 +45,7 @@ function resultsParks(stateCode) {
 
                 let entranceFees = document.createElement('div');
                 entranceFees.innerHTML = `
-                <p>Entrance Fees:</p>
+                <h3>Entrance Fees:</h3>
                 <ul>
                     ${parsedData.data[0].entranceFees
                     .map(
@@ -59,19 +59,25 @@ function resultsParks(stateCode) {
                 parkResultBox.innerHTML = `
                 <div class="parkResultsItemBox">
                 <h2>${parkName}</h2>
-                <p>${address}</p>
-                <p>Email: ${contacts.emailAddresses.length > 0
+                <h3>Address: </h3>
+                    <p>${address}</p>
+                <h3>Email: </h3>
+                    <p>${contacts.emailAddresses.length > 0
                     ? contacts.emailAddresses[0].emailAddress
                     : 'N/A'
                 }</p>
-                <p>Phone: ${contacts.phoneNumbers.length > 0
+                <h3>Phone: </h3>
+                    <p>${contacts.phoneNumbers.length > 0
                     ? contacts.phoneNumbers[0].phoneNumber
                     : 'N/A'
                 }</p>
-                <p>Description: ${description}</p>
-                <p>Designation: ${designation}</p>
+                <h3>Description: </h3>
+                <p>${description}</p>
+                <h3>Designation: </h3>
+                <p>${designation}</p>
+                <h3>Directions Info</h3>
                 <p>${directionsInfo}</p>
-                <p>${directionsUrl}</p>
+                <div style="text-align: center;"><a href="${directionsUrl}">Directions URL</a>
                 </div>
                 `;
                 parkResultBox.appendChild(entranceFees);
@@ -118,10 +124,10 @@ function parkForecast(zipCode, resultBox) {
                 let wind = forecast.wind.speed;
                 let humidity = forecast.main.humidity;
                 let date = new Date(currentDate.getTime() + index * 24 * 60 * 60 * 1000).toLocaleDateString();
-
+    
                 forecastItem.innerHTML = `
                 <div class="parkForecastItemBox">
-           <p>Date: ${date}</p>
+           <h4>Date: ${date}</h4>
            <p>Temperature: ${temperature}F</p>
            <p>Wind speed: ${wind} m/s</p>
            <p>Humidity: ${humidity}%</p>
