@@ -25,7 +25,8 @@ searchButton.on('click', (event) => {
 	let stateSelected = document.querySelector('#stateSelector').value;
 	console.log(stateSelected);
     if(stateSelected !== "00"){
-        localStorage.setItem('stateSelected', JSON.stringify(stateSelected));
+        //localStorage.setItem('stateSelected', JSON.stringify(stateSelected));
+        sessionStorage.setItem('stateSelected', JSON.stringify(stateSelected));
         window.location.href = URLredirect;
     }
 });

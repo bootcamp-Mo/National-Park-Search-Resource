@@ -11,7 +11,6 @@ const apiForecast = 'https://api.openweathermap.org/data/2.5/forecast'
 
 const parkResultContainer = document.querySelector('#apiResults');
 //const parkForecastBox = document.querySelector('#parkForecastBox');
-const stateCode = '';
 
 function resultsParks(stateCode) {
     fetch(`${apiParks}?stateCode=${stateCode}&api_key=${apiPKey}`)
@@ -141,6 +140,10 @@ function parkForecast(zipCode, resultBox) {
 }
 
 window.onload = function () {
-    resultsParks('CA');
+    /*let stateCode = localStorage.getItem("stateSelected");
+    stateCode = JSON.parse(stateCode);*/
+    let stateCode = JSON.parse(sessionStorage.getItem('stateSelected'));
+    console.log(stateCode);
+    resultsParks(stateCode);
 
 }
