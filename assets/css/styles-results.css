@@ -21,6 +21,15 @@ p {
     /* border: solid red; */
 }
 
+.go-back{
+    background-color: rgb(189, 159, 136);
+    color: rgb(0, 0, 0);
+    display: flex;
+    display: block;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
 
 ul {
     display: flex;
