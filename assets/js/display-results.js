@@ -62,22 +62,23 @@ function resultsParks(stateCode) {
                 <h3>Address: </h3>
                     <p>${address}</p>
                 <h3>Email: </h3>
-                    <p>${contacts.emailAddresses.length > 0
-                    ? contacts.emailAddresses[0].emailAddress
-                    : 'N/A'
-                }</p>
+                <p><a href="mailto:${contacts.emailAddresses.length > 0 ? contacts.emailAddresses[0].emailAddress : ''}">
+                  ${contacts.emailAddresses.length > 0 ? contacts.emailAddresses[0].emailAddress : 'N/A'}
+                </a>
+                </p>
                 <h3>Phone: </h3>
-                    <p>${contacts.phoneNumbers.length > 0
-                    ? contacts.phoneNumbers[0].phoneNumber
-                    : 'N/A'
-                }</p>
+                <p><a href="tel:${contacts.phoneNumbers.length > 0 ? contacts.phoneNumbers[0].phoneNumber : ''}">
+                  ${contacts.phoneNumbers.length > 0 ? contacts.phoneNumbers[0].phoneNumber : 'N/A'}
+                  </a>
+                </p>
                 <h3>Description: </h3>
                 <p>${description}</p>
                 <h3>Designation: </h3>
                 <p>${designation}</p>
                 <h3>Directions Info</h3>
                 <p>${directionsInfo}</p>
-                <div style="text-align: center;"><a href="${directionsUrl}">Directions URL</a>
+                <p><a href="${directionsUrl}">Directions URL</a>
+                </p>
                 </div>
                 `;
                 parkResultBox.appendChild(entranceFees);
@@ -114,7 +115,7 @@ function parkForecast(zipCode, resultBox) {
             }
 
             let parkForecastBox = document.createElement('div');
-            parkForecastBox.classList.add("callout", "priamry");
+            parkForecastBox.classList.add("callout", "primary");
             let forecastList = document.createElement('ul');
             let currentDate = new Date();
             //currentDate.setDate(currentDate.getDate() + 1);
@@ -128,7 +129,7 @@ function parkForecast(zipCode, resultBox) {
                 forecastItem.innerHTML = `
                 <div class="parkForecastItemBox">
                 <h4>Date: ${date}</h4>
-                <p>Temperature: ${temperature}F</p>
+                <p>Temperature: ${temperature}°F</p>
                 <p>Wind speed: ${wind} m/s</p>
                 <p>Humidity: ${humidity}%</p>
                 </div>
