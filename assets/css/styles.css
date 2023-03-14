@@ -37,10 +37,12 @@ body {
     text-align: center;
     justify-content: center;
     align-items: center;
+    margin-top: 17%;
+    border-radius: 0.5em;
 }
 
 
-.search-container {
+.searchcontainer {
     background-color: #fff;
     border-color: #dbdbdb;
     color: #363636;
@@ -49,6 +51,7 @@ body {
     font-size: 1em;
     max-width: 100%;
     outline: 0;
+    border-radius: 0.5em;
 }
 
 select {
@@ -72,6 +75,7 @@ p a {
     display: block;
     margin: 0 auto;
     border: solid white 2px;
+    border-radius: 0.5em;
 }
 
 
@@ -105,7 +109,7 @@ p a {
     h4 {
         font-weight: bold;
   }
-  
+
     ul {
     flex-direction: row;
     flex-wrap: wrap;
