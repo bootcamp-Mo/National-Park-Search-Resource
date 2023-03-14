@@ -52,6 +52,7 @@ body {
     font-size: 1em;
     max-width: 100%;
     outline: 0;
+    border-radius: 0.5em;
 }
 
 select {
