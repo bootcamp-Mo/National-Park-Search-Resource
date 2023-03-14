@@ -1,36 +1,3 @@
-
-h1 {
-    background-image: url('../image/yosemite-valley-sunset.jpg');
-    background-repeat: no-repeat;
-    background-size: 100%;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: lightgray;
-}
-
-
-p {
-    text-align: center;
-    flex-wrap: wrap;
-    /* For Debugging Purposes */
-    /* border: solid red; */
-}
-
-.go-back{
-    background-color: rgb(189, 159, 136);
-    color: rgb(0, 0, 0);
-    display: flex;
-    display: block;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-}
-
 ul {
     display: flex;
     list-style: none;
@@ -40,14 +7,23 @@ ul {
     align-items: center;
   }
   
+
 li {
     border: solid rgb(96, 95, 95) 1px;
     box-shadow: 4px 5px 4px rgb(114, 116, 117);
     padding: 10px;
-    width: 20%; /* adjust width to your preference */
-  }
+    width: 20%; 
+}
 
-li.p{
-    /* For Debugging Purposes */
-    color: pink;
+.go-back{
+    /* background-color: #363636; */
+    /* color: rgb(255, 254, 254); */
+    display: flex;
+    display: block;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    margin: 0 auto;
+    border: solid white 2px;
 }
