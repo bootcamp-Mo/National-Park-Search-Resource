@@ -127,12 +127,12 @@ function parkForecast(zipCode, resultBox) {
     
                 forecastItem.innerHTML = `
                 <div class="parkForecastItemBox">
-           <h4>Date: ${date}</h4>
-           <p>Temperature: ${temperature}F</p>
-           <p>Wind speed: ${wind} m/s</p>
-           <p>Humidity: ${humidity}%</p>
-           </div>
-         `;
+                <h4>Date: ${date}</h4>
+                <p>Temperature: ${temperature}F</p>
+                <p>Wind speed: ${wind} m/s</p>
+                <p>Humidity: ${humidity}%</p>
+                </div>
+                `;
                 forecastList.appendChild(forecastItem);
             });
             //parkForecastBox.innerHTML = '';
