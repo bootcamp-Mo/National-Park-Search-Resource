@@ -19,3 +19,12 @@ Then I am given a list of 5 national park results
 When results are generated 
 Then I want to see data of national parks and the weather 
 When we want to search for a new state, 
+
+##Screenshot
+
+
+
+##Github Repository
+https://github.com/bootcamp-Mo/National-Park-Search-Resource
+
+##Deployed Website
