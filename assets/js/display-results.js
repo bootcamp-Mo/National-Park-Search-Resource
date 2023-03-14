@@ -87,12 +87,7 @@ function resultsParks(stateCode) {
 
                 parkForecast(postalCode, resultBox);
 
-
             }
-            
-
-            
-            
         });
 }
 
@@ -150,7 +145,6 @@ window.onload = function () {
     /*let stateCode = localStorage.getItem("stateSelected");
     stateCode = JSON.parse(stateCode);*/
     let stateCode = JSON.parse(sessionStorage.getItem('stateSelected'));
-    console.log(stateCode);
     resultsParks(stateCode);
 
 }
