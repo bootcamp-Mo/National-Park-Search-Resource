@@ -19,7 +19,7 @@ function resultsParks(stateCode) {
         })
         .then(function (data) {
             let parsedData = JSON.parse(JSON.stringify(data));
-            for(let i = 0; i < 5; i++){
+            for (let i = 0; i < 5; i++) {
                 let resultBox = document.createElement('div');
                 resultBox.classList.add('parkResults');
                 let parkResultBox = document.createElement('div');
@@ -28,13 +28,13 @@ function resultsParks(stateCode) {
                 let activity = parsedData.data[i].activities;
                 let parkName = parsedData.data[i].fullName;
                 let address =
-                parsedData.data[i].addresses[0].line1 +
-                ', ' +
-                parsedData.data[i].addresses[0].city +
-                ', ' +
-                parsedData.data[i].addresses[0].stateCode +
-                ' ' +
-                parsedData.data[i].addresses[0].postalCode;
+                    parsedData.data[i].addresses[0].line1 +
+                    ', ' +
+                    parsedData.data[i].addresses[0].city +
+                    ', ' +
+                    parsedData.data[i].addresses[0].stateCode +
+                    ' ' +
+                    parsedData.data[i].addresses[0].postalCode;
 
                 let postalCode = parsedData.data[i].addresses[0].postalCode;
                 let contacts = parsedData.data[i].contacts;
@@ -48,11 +48,11 @@ function resultsParks(stateCode) {
                 <h3>Entrance Fees:</h3>
                 <ul>
                     ${parsedData.data[0].entranceFees
-                    .map(
-                        fee =>
-                            `<li>${fee.title}: $${fee.cost}</li>`
-                    )
-                    .join('')}
+                        .map(
+                            fee =>
+                                `<li>${fee.title}: $${fee.cost}</li>`
+                        )
+                        .join('')}
                 </ul>
                 `;
 
@@ -73,6 +73,10 @@ function resultsParks(stateCode) {
                 </p>
                 <h3>Description: </h3>
                 <p>${description}</p>
+                <h3>Activities</h3>
+                <ul>
+                ${activity.slice(0, 5).map(a => `<li>${a.name}</li>`).join('')}
+              </ul>
                 <h3>Designation: </h3>
                 <p>${designation}</p>
                 <h3>Directions Info</h3>
@@ -81,12 +85,10 @@ function resultsParks(stateCode) {
                 </p>
                 </div>
                 `;
+
                 parkResultBox.appendChild(entranceFees);
-
                 resultBox.appendChild(parkResultBox);
-
                 parkForecast(postalCode, resultBox);
-
             }
         });
 }
@@ -113,14 +115,13 @@ function parkForecast(zipCode, resultBox) {
             parkForecastBox.classList.add("callout", "primary");
             let forecastList = document.createElement('ul');
             let currentDate = new Date();
-            //currentDate.setDate(currentDate.getDate() + 1);
             parsedData.list.slice().forEach(function (forecast, index) {
                 let forecastItem = document.createElement('li');
                 let temperature = forecast.main.temp;
                 let wind = forecast.wind.speed;
                 let humidity = forecast.main.humidity;
                 let date = new Date(currentDate.getTime() + index * 24 * 60 * 60 * 1000).toLocaleDateString();
-    
+
                 forecastItem.innerHTML = `
                 <div class="parkForecastItemBox">
                 <h4>Date: ${date}</h4>
@@ -131,7 +132,6 @@ function parkForecast(zipCode, resultBox) {
                 `;
                 forecastList.appendChild(forecastItem);
             });
-            //parkForecastBox.innerHTML = '';
             parkForecastBox.appendChild(forecastList);
             resultBox.appendChild(parkForecastBox);
             parkResultContainer.appendChild(resultBox);
@@ -142,8 +142,6 @@ function parkForecast(zipCode, resultBox) {
 }
 
 window.onload = function () {
-    /*let stateCode = localStorage.getItem("stateSelected");
-    stateCode = JSON.parse(stateCode);*/
     let stateCode = JSON.parse(sessionStorage.getItem('stateSelected'));
     resultsParks(stateCode);
 
