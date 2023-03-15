@@ -75,7 +75,7 @@ function resultsParks(stateCode) {
                 <p>${description}</p>
                 <h3>Activities</h3>
                 <ul>
-                ${activity.slice(0, 5).map(a => `<li>${a.name}</li>`).join('')}
+                ${activity.slice(0, 4).map(a => `<li>${a.name}</li>`).join('')}
               </ul>
                 <h3>Designation: </h3>
                 <p>${designation}</p>
